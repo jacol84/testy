@@ -77,16 +77,16 @@
         <p>Uzupełnij funkcję <code>generateReport()</code> w tagu <code>&lt;script&gt;</code> tego pliku, aby realizowała następujące kroki:</p>
         <ol>
             <li><strong>Pobranie danych:</strong> Wywołaj asynchroniczną funkcję <code>fetchTransactions()</code>.</li>
-            <li><strong>Oczyszczanie danych:</strong> Odrzuć transakcje bez podanej kwoty (<code>amount</code>) oraz te ze statusem <code>"FAILED"</code>. Upewnij się, że kwota jest poprawną liczbą (uwaga na stringi!).</li>
+            <li><strong>Oczyszczanie danych:</strong> Odrzuć transakcje bez podanej kwoty (<code>amount</code>) </li>
             <li><strong>Agregacja:</strong> Zwróć obiekt raportu zawierający:
                 <ul>
                     <li><code>totalRevenue</code>: Suma kwot wszystkich poprawnych transakcji (zaokrąglona do 2 miejsc po przecinku).</li>
-                    <li><code>highestTransactionId</code>: ID transakcji z najwyższą kwotą.</li>
+                    <li><code>highestTransactionId</code>: ID transakcji z najwyższą kwotą jaka to kwota .</li>
                     <li><code>categories</code>: Obiekt z sumami kwot podzielonymi na kategorie (np. <code>{ Elektronika: X, Moda: Y }</code>).</li>
                 </ul>
             </li>
         </ol>
-        <p><em>Wynik powinien pojawić się poniżej po kliknięciu przycisku. Wykorzystaj konsolę przeglądarki (F12) do debugowania.</em></p>
+        <p><em>Wynik powinien pojawić się poniżej po kliknięciu przycisku.</em></p>
     </div>
 
     <button id="runBtn">Uruchom generowanie raportu</button>
@@ -104,6 +104,7 @@
         { id: 3, amount: null, category: 'Sport', status: 'SUCCESS' },
         { id: 4, amount: 300.00, category: 'Elektronika', status: 'FAILED' },
         { id: 5, amount: 15.99, category: 'Moda', status: 'SUCCESS' },
+        { id: 6, category: 'Wycieczka', status: 'SUCCESS' },
     ];
 
     function fetchTransactions() {
