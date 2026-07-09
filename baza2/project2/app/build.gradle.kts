@@ -16,10 +16,11 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
-    // DODATEK: Wsparcie dla Kotlina w Spring Boot (m.in. lepsza obsługa JSON/Jackson)
+    // OTO KLUCZOWA ZALEŻNOŚĆ, KTÓRA URUCHOMI BAZĘ W PAMIĘCI:
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-
     runtimeOnly("com.h2database:h2")
 }
 
