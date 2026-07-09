@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie Rekrutacyjne - Analizator Transakcji</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        .instructions {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #27ae60;
+        }
+        .output-section {
+            margin-top: 25px;
+        }
+        pre {
+            background-color: #2d3748;
+            color: #f7fafc;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+            min-height: 80px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Zadanie: Analizator Transakcji Sklepowych</h1>
+
+    <div class="instructions">
+        <h3>Twoje zadanie:</h3>
+        <p>Uzupełnij funkcję <code>generateReport()</code> w tagu <code>&lt;script&gt;</code> tego pliku, aby realizowała następujące kroki:</p>
+        <ol>
+            <li><strong>Pobranie danych:</strong> Wywołaj asynchroniczną funkcję <code>fetchTransactions()</code>.</li>
+            <li><strong>Oczyszczanie danych:</strong> Odrzuć transakcje bez podanej kwoty (<code>amount</code>) oraz te ze statusem <code>"FAILED"</code>. Upewnij się, że kwota jest poprawną liczbą (uwaga na stringi!).</li>
+            <li><strong>Agregacja:</strong> Zwróć obiekt raportu zawierający:
+                <ul>
+                    <li><code>totalRevenue</code>: Suma kwot wszystkich poprawnych transakcji (zaokrąglona do 2 miejsc po przecinku).</li>
+                    <li><code>highestTransactionId</code>: ID transakcji z najwyższą kwotą.</li>
+                    <li><code>categories</code>: Obiekt z sumami kwot podzielonymi na kategorie (np. <code>{ Elektronika: X, Moda: Y }</code>).</li>
+                </ul>
+            </li>
+        </ol>
+        <p><em>Wynik powinien pojawić się poniżej po kliknięciu przycisku. Wykorzystaj konsolę przeglądarki (F12) do debugowania.</em></p>
+    </div>
+
+    <button id="runBtn">Uruchom generowanie raportu</button>
+
+    <div class="output-section">
+        <h3>Wynik działania funkcji:</h3>
+        <pre id="output">// Tutaj pojawi się Twój raport w formacie JSON...</pre>
+    </div>
+</div>
+
+<script>
+    const rawTransactions = [
+        { id: 1, amount: 120.50, category: 'Elektronika', status: 'SUCCESS' },
+        { id: 2, amount: "45.00", category: 'Moda', status: 'SUCCESS' },
+        { id: 3, amount: null, category: 'Sport', status: 'SUCCESS' },
+        { id: 4, amount: 300.00, category: 'Elektronika', status: 'FAILED' },
+        { id: 5, amount: 15.99, category: 'Moda', status: 'SUCCESS' },
+    ];
+
+    function fetchTransactions() {
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(rawTransactions), 500);
+        });
+    }
+
+    async function generateReport() {
+        // 1. Pobierz dane za pomocą fetchTransactions()
+        // 2. Oczyść i przefiltruj dane
+        // 3. Stwórz i zwróć obiekt raportu: { totalRevenue: X, highestTransactionId: Y, categories: { ... } }
+
+        // Przykładowy pusty zwrot (usuń/zmień deweloperze):
+        return { message: "Uzupełnij funkcję generateReport()" };
+    }
+
+
+    document.getElementById('runBtn').addEventListener('click', async () => {
+        const outputElement = document.getElementById('output');
+        outputElement.textContent = "Pobieranie i przetwarzanie danych...";
+
+        try {
+            const report = await generateReport();
+            outputElement.textContent = JSON.stringify(report, null, 2);
+        } catch (error) {
+            outputElement.textContent = "Błąd podczas generowania raportu: " + error.message;
+            outputElement.style.color = "#fc8181";
+        }
+    });
+</script>
+
+</body>
+</html>
